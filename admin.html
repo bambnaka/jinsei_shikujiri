@@ -26,11 +26,15 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
 .login-btn:hover{background:#A33A10;}
 .login-err{font-size:0.75rem;color:#E87A7A;margin-top:0.5rem;text-align:center;display:none;}
 #admin-panel{display:none;max-width:900px;margin:0 auto;padding:1.5rem 1.2rem 4rem;}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.8rem;margin-bottom:2rem;}
+.section-label{font-family:'Share Tech Mono',monospace;font-size:0.8rem;font-weight:700;color:#8A7A5A;letter-spacing:0.1em;margin-bottom:0.8rem;margin-top:1.5rem;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.8rem;margin-bottom:1rem;}
 .stat-card{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;padding:1rem 1.2rem;}
 .stat-num{font-family:'Share Tech Mono',monospace;font-size:1.8rem;color:#E8891A;display:block;line-height:1;}
-.stat-label{font-size:0.7rem;color:#8A7A5A;display:block;margin-top:0.3rem;}
-.section-title{font-family:'Share Tech Mono',monospace;font-size:0.85rem;font-weight:700;color:#8A7A5A;letter-spacing:0.1em;margin-bottom:0.8rem;}
+.stat-label{font-size:0.68rem;color:#8A7A5A;display:block;margin-top:0.3rem;}
+.stat-card.qr .stat-num{color:#A070FF;}
+.qr-url-box{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;padding:0.8rem 1rem;margin-bottom:1.5rem;}
+.qr-url-label{font-size:0.68rem;color:#8A7A5A;margin-bottom:0.4rem;font-family:'Share Tech Mono',monospace;}
+.qr-url{font-size:0.75rem;color:#A070FF;font-family:'Share Tech Mono',monospace;word-break:break-all;line-height:1.6;}
 .admin-card{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;margin-bottom:0.7rem;}
 .admin-card-meta{display:flex;align-items:center;flex-wrap:wrap;gap:0.4rem;padding:0.6rem 1rem;border-bottom:1px solid #3A2A18;}
 .nick{font-family:'Share Tech Mono',monospace;font-size:0.75rem;font-weight:700;color:#E8891A;}
@@ -65,12 +69,23 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
   <div class="login-err" id="login-err">パスワードが違います</div>
 </div></div>
 <div id="admin-panel">
+  <div class="section-label">// 投稿統計</div>
   <div class="stats-grid">
     <div class="stat-card"><span class="stat-num" id="s-total">—</span><span class="stat-label">総投稿数</span></div>
     <div class="stat-card"><span class="stat-num" id="s-helpful">—</span><span class="stat-label">総「参考になった」数</span></div>
     <div class="stat-card"><span class="stat-num" id="s-today">—</span><span class="stat-label">今日の投稿</span></div>
   </div>
-  <div class="section-title">// ALL POSTS</div>
+  <div class="section-label">// QRコード読み取り統計</div>
+  <div class="stats-grid">
+    <div class="stat-card qr"><span class="stat-num" id="qr-total">—</span><span class="stat-label">QR総読み取り数</span></div>
+    <div class="stat-card qr"><span class="stat-num" id="qr-unique">—</span><span class="stat-label">ユニーク訪問者数</span></div>
+    <div class="stat-card qr"><span class="stat-num" id="qr-repeat">—</span><span class="stat-label">2回以上読んだ人</span></div>
+  </div>
+  <div class="qr-url-box">
+    <div class="qr-url-label">▍ QRコード用URL（このURLでQRコードを作成してください）</div>
+    <div class="qr-url">https://bambnaka.github.io/jinsei-shikujiri/?utm_source=qr&utm_medium=print&utm_campaign=jinsei_shikujiri</div>
+  </div>
+  <div class="section-label">// 投稿一覧</div>
   <div id="admin-posts"><div class="loading">読み込み中...</div></div>
 </div>
 <div class="modal-bg" id="modal"><div class="modal">
@@ -88,7 +103,10 @@ const H={'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-T
 const ADMIN_PASS='sarugamori39';
 let deleteTargetId=null;
 function login(){const val=document.getElementById('pw-input').value;if(val===ADMIN_PASS){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';loadAll();}else{document.getElementById('login-err').style.display='block';}}
-async function loadAll(){try{const res=await fetch(SUPABASE_URL+'/rest/v1/jinsei_shikujiri?order=created_at.desc',{headers:H});const posts=await res.json();renderStats(posts);renderPosts(posts);}catch(e){document.getElementById('admin-posts').innerHTML='<div class="empty">読み込みに失敗しました。</div>';}}
+async function loadAll(){
+  try{const res=await fetch(SUPABASE_URL+'/rest/v1/jinsei_shikujiri?order=created_at.desc',{headers:H});const posts=await res.json();renderStats(posts);renderPosts(posts);}catch(e){document.getElementById('admin-posts').innerHTML='<div class="empty">読み込みに失敗しました。</div>';}
+  try{const res=await fetch(SUPABASE_URL+'/rest/v1/qr_access?site=eq.jinsei_shikujiri',{headers:H});const data=await res.json();const total=data.length;const visitors=[...new Set(data.map(d=>d.visitor_id))];const unique=visitors.length;const repeaters=visitors.filter(v=>data.filter(d=>d.visitor_id===v).length>=2).length;document.getElementById('qr-total').textContent=total;document.getElementById('qr-unique').textContent=unique;document.getElementById('qr-repeat').textContent=repeaters;}catch(e){}
+}
 function renderStats(posts){document.getElementById('s-total').textContent=posts.length;document.getElementById('s-helpful').textContent=posts.reduce((s,p)=>s+(p.helpful||0),0);const today=new Date().toDateString();document.getElementById('s-today').textContent=posts.filter(p=>new Date(p.created_at).toDateString()===today).length;}
 function renderPosts(posts){const el=document.getElementById('admin-posts');if(!posts.length){el.innerHTML='<div class="empty">投稿がありません。</div>';return;}el.innerHTML=posts.map(p=>{const t=new Date(p.created_at).toLocaleString('ja-JP',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});return`<div class="admin-card" id="card-${p.id}"><div class="admin-card-meta"><span class="nick">${esc(p.nick)}</span><span class="helpful-count">👍 ${p.helpful}</span><span class="ctime">${t}</span></div><div class="admin-card-body"><p class="episode-text">${esc(p.episode)}</p></div><div class="admin-card-foot"><button class="del-btn" onclick="askDelete(${p.id})">削除</button></div></div>`;}).join('');}
 function askDelete(id){deleteTargetId=id;document.getElementById('modal').classList.add('show');}
