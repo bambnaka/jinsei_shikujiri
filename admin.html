@@ -9,18 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Noto Sans JP',sans-serif;background:#1A1208;color:#FFF9EC;min-height:100vh;}
+body{font-family:'Noto Sans JP',sans-serif;background:#1A1208;color:#F6F4FF;min-height:100vh;}
 .tape{height:6px;background:repeating-linear-gradient(90deg,#C94A1A 0,#C94A1A 20px,#E8891A 20px,#E8891A 40px);}
 header{background:#1A1208;border-bottom:1px solid #3A2A18;}
 .hinner{padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;}
-.site-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:1.2rem;color:#FFF9EC;}
-.site-title span{color:#C94A1A;}
+.site-title{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:1.2rem;color:#F6F4FF;}
+.site-title span{color:#E8891A;}
 .back-link{font-size:0.75rem;color:#8A7A5A;text-decoration:none;font-family:'Share Tech Mono',monospace;}
 .back-link:hover{color:#E8891A;}
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 60px);}
 .login-box{background:#2A1E10;border:1px solid #3A2A18;border-radius:4px;padding:2rem;width:300px;}
-.login-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.2rem;color:#FFF9EC;text-align:center;}
-.login-input{width:100%;padding:0.6rem 0.8rem;background:#1A1208;border:1px solid #3A2A18;border-radius:3px;color:#FFF9EC;font-size:0.9rem;font-family:'Noto Sans JP',sans-serif;margin-bottom:0.8rem;}
+.login-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.2rem;color:#F6F4FF;text-align:center;}
+.login-input{width:100%;padding:0.6rem 0.8rem;background:#1A1208;border:1px solid #3A2A18;border-radius:3px;color:#F6F4FF;font-size:0.9rem;font-family:'Noto Sans JP',sans-serif;margin-bottom:0.8rem;}
 .login-input:focus{outline:none;border-color:#E8891A;}
 .login-btn{width:100%;padding:0.7rem;background:#C94A1A;color:white;border:none;border-radius:3px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;}
 .login-btn:hover{background:#A33A10;}
@@ -31,15 +31,49 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
 .stat-card{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;padding:1rem 1.2rem;}
 .stat-num{font-family:'Share Tech Mono',monospace;font-size:1.8rem;color:#E8891A;display:block;line-height:1;}
 .stat-label{font-size:0.68rem;color:#8A7A5A;display:block;margin-top:0.3rem;}
-.stat-card.qr .stat-num{color:#A070FF;}
-.qr-url-box{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;padding:0.8rem 1rem;margin-bottom:1.5rem;}
+.stat-card.qr .stat-num{color:#E8891A;}
+.qr-url-box{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;padding:0.8rem 1rem;margin-bottom:1rem;}
 .qr-url-label{font-size:0.68rem;color:#8A7A5A;margin-bottom:0.4rem;font-family:'Share Tech Mono',monospace;}
-.qr-url{font-size:0.75rem;color:#A070FF;font-family:'Share Tech Mono',monospace;word-break:break-all;line-height:1.6;}
+.qr-url{font-size:0.75rem;color:#E8891A;font-family:'Share Tech Mono',monospace;word-break:break-all;line-height:1.6;}
+.access-table-wrap{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;margin-bottom:1rem;overflow:hidden;}
+.access-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.access-table th{background:#3A2A18;color:#8A7A5A;font-family:'Share Tech Mono',monospace;font-size:0.68rem;font-weight:700;letter-spacing:0.05em;padding:0.5rem 0.8rem;text-align:left;border-bottom:1px solid #3A2A18;}
+.access-table td{padding:0.5rem 0.8rem;border-bottom:1px solid #3A2A18;color:#C8B898;font-family:'Share Tech Mono',monospace;vertical-align:middle;}
+.access-table tr:last-child td{border-bottom:none;}
+.access-table tr:hover td{background:#2A1E10;}
+.count-bar-wrap{display:flex;align-items:center;gap:0.5rem;}
+.count-bar{height:6px;background:#C94A1A;border-radius:3px;min-width:4px;}
+.count-num{color:#E8891A;font-weight:700;min-width:24px;}
+.badge-repeat{font-size:0.6rem;background:#3A2A10;color:#E8891A;border:1px solid #C94A1A;padding:1px 6px;border-radius:2px;}
+.badge-repeat3{font-size:0.6rem;background:#4A2A10;color:#FAC870;border:1px solid #E8891A;padding:1px 6px;border-radius:2px;}
+
+/* 時系列ログ */
+.timeline-wrap{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;margin-bottom:1rem;overflow:hidden;}
+.timeline-header{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.9rem;border-bottom:1px solid #3A2A18;}
+.timeline-header-label{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:#8A7A5A;}
+.view-toggle{display:flex;gap:0.4rem;}
+.toggle-btn{font-size:0.65rem;padding:2px 8px;border-radius:2px;cursor:pointer;border:1px solid #3A2A18;background:none;color:#8A7A5A;font-family:'Share Tech Mono',monospace;}
+.toggle-btn.active{background:#C94A1A;border-color:#C94A1A;color:white;}
+/* 時間別グラフ */
+.hour-chart{padding:0.8rem 1rem;}
+.hour-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:4px;}
+.hour-label{font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:#5A4A38;min-width:40px;}
+.hour-bar-wrap{flex:1;background:#3A2A18;border-radius:2px;height:14px;overflow:hidden;}
+.hour-bar{height:100%;background:#C94A1A;border-radius:2px;transition:width 0.3s;}
+.hour-count{font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:#E8891A;min-width:24px;text-align:right;}
+/* 時系列リスト */
+.log-list{max-height:300px;overflow-y:auto;}
+.log-item{display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.9rem;border-bottom:1px solid #3A2A18;}
+.log-item:last-child{border-bottom:none;}
+.log-time{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:#E8891A;min-width:120px;}
+.log-id{font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:#5A4A38;}
+.log-dot{width:6px;height:6px;border-radius:50%;background:#C94A1A;flex-shrink:0;}
+
 .admin-card{background:#2A1E10;border:1px solid #3A2A18;border-radius:3px;margin-bottom:0.7rem;}
 .admin-card-meta{display:flex;align-items:center;flex-wrap:wrap;gap:0.4rem;padding:0.6rem 1rem;border-bottom:1px solid #3A2A18;}
 .nick{font-family:'Share Tech Mono',monospace;font-size:0.75rem;font-weight:700;color:#E8891A;}
 .ctime{font-size:0.62rem;color:#5A4A38;font-family:'Share Tech Mono',monospace;margin-left:auto;}
-.helpful-count{font-size:0.68rem;color:#2A7A3A;font-family:'Share Tech Mono',monospace;}
+.helpful-count{font-size:0.68rem;color:#E8891A;font-family:'Share Tech Mono',monospace;}
 .admin-card-body{padding:0.7rem 1rem;}
 .episode-text{font-size:0.82rem;color:#C8B898;line-height:1.7;white-space:pre-wrap;}
 .admin-card-foot{display:flex;justify-content:flex-end;padding:0.5rem 1rem;border-top:1px solid #3A2A18;}
@@ -55,7 +89,7 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
 .modal-cancel{flex:1;padding:0.6rem;background:none;border:1px solid #3A2A18;border-radius:3px;color:#8A7A5A;cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-size:0.85rem;}
 .modal-delete{flex:1;padding:0.6rem;background:#C94A1A;border:none;border-radius:3px;color:white;cursor:pointer;font-family:'Zen Kaku Gothic New',sans-serif;font-size:0.85rem;font-weight:700;}
 .modal-delete:hover{background:#A33A10;}
-.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:#FFF9EC;color:#1A1208;padding:0.6rem 1.4rem;border-radius:3px;font-size:0.82rem;z-index:200;transition:transform .28s;white-space:nowrap;}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:#F6F4FF;color:#1A1208;padding:0.6rem 1.4rem;border-radius:3px;font-size:0.82rem;z-index:200;transition:transform .28s;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 </style>
 </head>
@@ -68,6 +102,7 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
   <button class="login-btn" onclick="login()">ログイン</button>
   <div class="login-err" id="login-err">パスワードが違います</div>
 </div></div>
+
 <div id="admin-panel">
   <div class="section-label">// 投稿統計</div>
   <div class="stats-grid">
@@ -75,19 +110,44 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
     <div class="stat-card"><span class="stat-num" id="s-helpful">—</span><span class="stat-label">総「参考になった」数</span></div>
     <div class="stat-card"><span class="stat-num" id="s-today">—</span><span class="stat-label">今日の投稿</span></div>
   </div>
+
   <div class="section-label">// QRコード読み取り統計</div>
   <div class="stats-grid">
     <div class="stat-card qr"><span class="stat-num" id="qr-total">—</span><span class="stat-label">QR総読み取り数</span></div>
     <div class="stat-card qr"><span class="stat-num" id="qr-unique">—</span><span class="stat-label">ユニーク訪問者数</span></div>
     <div class="stat-card qr"><span class="stat-num" id="qr-repeat">—</span><span class="stat-label">2回以上読んだ人</span></div>
+    <div class="stat-card qr"><span class="stat-num" id="qr-repeat3">—</span><span class="stat-label">3回以上読んだ人</span></div>
   </div>
   <div class="qr-url-box">
-    <div class="qr-url-label">▍ QRコード用URL（このURLでQRコードを作成してください）</div>
-    <div class="qr-url">https://bambnaka.github.io/jinsei-shikujiri/?utm_source=qr&utm_medium=print&utm_campaign=jinsei_shikujiri</div>
+    <div class="qr-url-label">▍ QRコード用URL</div>
+    <div class="qr-url">https://bambnaka.github.io/jinsei_shikujiri/?utm_source=qr&utm_medium=print&utm_campaign=jinsei_shikujiri</div>
   </div>
+
+  <div class="section-label">// 時系列ログ</div>
+  <div class="timeline-wrap">
+    <div class="timeline-header">
+      <span class="timeline-header-label">QR読み取り履歴</span>
+      <div class="view-toggle">
+        <button class="toggle-btn active" onclick="switchView('hour')">時間帯別</button>
+        <button class="toggle-btn" onclick="switchView('log')">時系列一覧</button>
+      </div>
+    </div>
+    <div id="view-hour"><div class="hour-chart" id="hour-chart"></div></div>
+    <div id="view-log" style="display:none"><div class="log-list" id="log-list"></div></div>
+  </div>
+
+  <div class="section-label">// ユーザー別 読み取り回数</div>
+  <div class="access-table-wrap">
+    <table class="access-table">
+      <thead><tr><th>#</th><th>訪問者ID（末尾8文字）</th><th>読み取り回数</th><th>最終アクセス</th></tr></thead>
+      <tbody id="access-table-body"><tr><td colspan="4" style="text-align:center;color:#5A4A38;padding:1rem;">読み込み中...</td></tr></tbody>
+    </table>
+  </div>
+
   <div class="section-label">// 投稿一覧</div>
   <div id="admin-posts"><div class="loading">読み込み中...</div></div>
 </div>
+
 <div class="modal-bg" id="modal"><div class="modal">
   <p>この投稿を削除しますか？<br>この操作は取り消せません。</p>
   <div class="modal-btns">
@@ -96,22 +156,141 @@ header{background:#1A1208;border-bottom:1px solid #3A2A18;}
   </div>
 </div></div>
 <div class="toast" id="toast"></div>
+
 <script>
 const SUPABASE_URL='https://bujdylzpyefppgytjjru.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1amR5bHpweWVmcHBneXRqanJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MjQzMDksImV4cCI6MjA5NjUwMDMwOX0.kiFqqtg5WBtKTv3J13cMW6lN7o3Q-JuVLDtwUDvIwp8';
 const H={'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'};
 const ADMIN_PASS='sarugamori39';
 let deleteTargetId=null;
-function login(){const val=document.getElementById('pw-input').value;if(val===ADMIN_PASS){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';loadAll();}else{document.getElementById('login-err').style.display='block';}}
-async function loadAll(){
-  try{const res=await fetch(SUPABASE_URL+'/rest/v1/jinsei_shikujiri?order=created_at.desc',{headers:H});const posts=await res.json();renderStats(posts);renderPosts(posts);}catch(e){document.getElementById('admin-posts').innerHTML='<div class="empty">読み込みに失敗しました。</div>';}
-  try{const res=await fetch(SUPABASE_URL+'/rest/v1/qr_access?site=eq.jinsei_shikujiri',{headers:H});const data=await res.json();const total=data.length;const visitors=[...new Set(data.map(d=>d.visitor_id))];const unique=visitors.length;const repeaters=visitors.filter(v=>data.filter(d=>d.visitor_id===v).length>=2).length;document.getElementById('qr-total').textContent=total;document.getElementById('qr-unique').textContent=unique;document.getElementById('qr-repeat').textContent=repeaters;}catch(e){}
+let currentView='hour';
+
+function login(){
+  const val=document.getElementById('pw-input').value;
+  if(val===ADMIN_PASS){document.getElementById('login-screen').style.display='none';document.getElementById('admin-panel').style.display='block';loadAll();}
+  else{document.getElementById('login-err').style.display='block';}
 }
-function renderStats(posts){document.getElementById('s-total').textContent=posts.length;document.getElementById('s-helpful').textContent=posts.reduce((s,p)=>s+(p.helpful||0),0);const today=new Date().toDateString();document.getElementById('s-today').textContent=posts.filter(p=>new Date(p.created_at).toDateString()===today).length;}
-function renderPosts(posts){const el=document.getElementById('admin-posts');if(!posts.length){el.innerHTML='<div class="empty">投稿がありません。</div>';return;}el.innerHTML=posts.map(p=>{const t=new Date(p.created_at).toLocaleString('ja-JP',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});return`<div class="admin-card" id="card-${p.id}"><div class="admin-card-meta"><span class="nick">${esc(p.nick)}</span><span class="helpful-count">👍 ${p.helpful}</span><span class="ctime">${t}</span></div><div class="admin-card-body"><p class="episode-text">${esc(p.episode)}</p></div><div class="admin-card-foot"><button class="del-btn" onclick="askDelete(${p.id})">削除</button></div></div>`;}).join('');}
+
+function switchView(v){
+  currentView=v;
+  document.getElementById('view-hour').style.display=v==='hour'?'block':'none';
+  document.getElementById('view-log').style.display=v==='log'?'block':'none';
+  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+async function loadAll(){
+  // 投稿データ
+  try{
+    const res=await fetch(SUPABASE_URL+'/rest/v1/jinsei_shikujiri?order=created_at.desc',{headers:H});
+    const posts=await res.json();
+    renderStats(posts);
+    renderPosts(posts);
+  }catch(e){document.getElementById('admin-posts').innerHTML='<div class="empty">読み込みに失敗しました。</div>';}
+
+  // QRアクセスデータ
+  try{
+    const res=await fetch(SUPABASE_URL+'/rest/v1/qr_access?site=eq.jinsei_shikujiri&order=accessed_at.desc',{headers:H});
+    const data=await res.json();
+
+    // サマリー統計
+    const total=data.length;
+    const visitorMap={};
+    data.forEach(d=>{
+      if(!visitorMap[d.visitor_id]){visitorMap[d.visitor_id]={count:0,last:d.accessed_at};}
+      visitorMap[d.visitor_id].count++;
+    });
+    const visitors=Object.entries(visitorMap).sort((a,b)=>b[1].count-a[1].count);
+    const unique=visitors.length;
+    const repeat2=visitors.filter(([,v])=>v.count>=2).length;
+    const repeat3=visitors.filter(([,v])=>v.count>=3).length;
+    document.getElementById('qr-total').textContent=total;
+    document.getElementById('qr-unique').textContent=unique;
+    document.getElementById('qr-repeat').textContent=repeat2;
+    document.getElementById('qr-repeat3').textContent=repeat3;
+
+    // 時間帯別グラフ（0〜23時）
+    const hourCounts=Array(24).fill(0);
+    data.forEach(d=>{
+      const h=new Date(d.accessed_at).getHours();
+      hourCounts[h]++;
+    });
+    const maxH=Math.max(...hourCounts,1);
+    const hourChart=document.getElementById('hour-chart');
+    if(!data.length){
+      hourChart.innerHTML='<div style="text-align:center;color:#5A4A38;padding:1rem;font-size:0.8rem;">まだデータがありません</div>';
+    } else {
+      hourChart.innerHTML=hourCounts.map((c,h)=>`
+        <div class="hour-row">
+          <span class="hour-label">${String(h).padStart(2,'0')}:00</span>
+          <div class="hour-bar-wrap"><div class="hour-bar" style="width:${Math.round((c/maxH)*100)}%"></div></div>
+          <span class="hour-count">${c>0?c:''}</span>
+        </div>`).join('');
+    }
+
+    // 時系列一覧（新しい順）
+    const logList=document.getElementById('log-list');
+    if(!data.length){
+      logList.innerHTML='<div style="text-align:center;color:#5A4A38;padding:1rem;font-size:0.8rem;">まだデータがありません</div>';
+    } else {
+      logList.innerHTML=data.map(d=>{
+        const t=new Date(d.accessed_at).toLocaleString('ja-JP',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+        const shortId=d.visitor_id.slice(-8);
+        const cnt=visitorMap[d.visitor_id]?.count||1;
+        const badge=cnt>=3?'<span class="badge-repeat3">3回以上</span>':cnt>=2?'<span class="badge-repeat">2回以上</span>':'';
+        return`<div class="log-item"><div class="log-dot"></div><span class="log-time">${t}</span><span class="log-id">ID:${shortId}</span>${badge}</div>`;
+      }).join('');
+    }
+
+    // ユーザー別テーブル
+    const maxCount=visitors[0]?.[1]?.count||1;
+    const tbody=document.getElementById('access-table-body');
+    if(!visitors.length){
+      tbody.innerHTML='<tr><td colspan="4" style="text-align:center;color:#5A4A38;padding:1rem;">まだQR読み取りがありません</td></tr>';
+    } else {
+      tbody.innerHTML=visitors.map(([id,v],i)=>{
+        const shortId=id.slice(-8);
+        const lastTime=new Date(v.last).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+        const barWidth=Math.round((v.count/maxCount)*120);
+        const badge=v.count>=3?'<span class="badge-repeat3">3回以上</span>':v.count>=2?'<span class="badge-repeat">2回以上</span>':'';
+        return`<tr>
+          <td style="color:#5A4A38">${i+1}</td>
+          <td><code>${shortId}</code> ${badge}</td>
+          <td><div class="count-bar-wrap"><div class="count-bar" style="width:${barWidth}px"></div><span class="count-num">${v.count}回</span></div></td>
+          <td><span style="font-size:0.65rem;color:#5A4A38">${lastTime}</span></td>
+        </tr>`;
+      }).join('');
+    }
+  }catch(e){}
+}
+
+function renderStats(posts){
+  document.getElementById('s-total').textContent=posts.length;
+  document.getElementById('s-helpful').textContent=posts.reduce((s,p)=>s+(p.helpful||0),0);
+  const today=new Date().toDateString();
+  document.getElementById('s-today').textContent=posts.filter(p=>new Date(p.created_at).toDateString()===today).length;
+}
+
+function renderPosts(posts){
+  const el=document.getElementById('admin-posts');
+  if(!posts.length){el.innerHTML='<div class="empty">投稿がありません。</div>';return;}
+  el.innerHTML=posts.map(p=>{
+    const t=new Date(p.created_at).toLocaleString('ja-JP',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    return`<div class="admin-card" id="card-${p.id}"><div class="admin-card-meta"><span class="nick">${esc(p.nick)}</span><span class="helpful-count">👍 ${p.helpful}</span><span class="ctime">${t}</span></div><div class="admin-card-body"><p class="episode-text">${esc(p.episode)}</p></div><div class="admin-card-foot"><button class="del-btn" onclick="askDelete(${p.id})">削除</button></div></div>`;
+  }).join('');
+}
+
 function askDelete(id){deleteTargetId=id;document.getElementById('modal').classList.add('show');}
 function closeModal(){deleteTargetId=null;document.getElementById('modal').classList.remove('show');}
-async function confirmDelete(){if(!deleteTargetId)return;const id=deleteTargetId;closeModal();try{const res=await fetch(SUPABASE_URL+'/rest/v1/jinsei_shikujiri?id=eq.'+id,{method:'DELETE',headers:H});if(res.ok){toast('🗑 投稿を削除しました');await loadAll();}else{toast('⚠ 削除に失敗しました（'+res.status+'）');}}catch(e){toast('⚠ 通信エラーが発生しました');}}
+async function confirmDelete(){
+  if(!deleteTargetId)return;
+  const id=deleteTargetId;closeModal();
+  try{
+    const res=await fetch(SUPABASE_URL+'/rest/v1/jinsei_shikujiri?id=eq.'+id,{method:'DELETE',headers:H});
+    if(res.ok){toast('🗑 投稿を削除しました');await loadAll();}
+    else{toast('⚠ 削除に失敗しました（'+res.status+'）');}
+  }catch(e){toast('⚠ 通信エラーが発生しました');}
+}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
 </script>
